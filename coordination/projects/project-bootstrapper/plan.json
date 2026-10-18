@@ -3,7 +3,7 @@
   "goal": "Crear proyectos listos para desarrollo asistido con agentes",
   "timezone": "America/Santiago",
   "created_at": "2026-10-17T23:24:55-03:00",
-  "updated_at": "2026-10-17T23:53:50-03:00",
+  "updated_at": "2026-10-18T19:47:44-03:00",
   "workspace": "/Users/mac/ops/worktrees/project-bootstrapper-plan",
   "source_repo": "/Users/mac/ops/repos/project_bootstrapper",
   "coordination_repo": "/Users/mac/ops/repos/agent-coordination",
@@ -49,11 +49,15 @@
       "dependencies": [
         "B1"
       ],
-      "state": "dispatched",
+      "state": "accepted",
       "assignment": "coordination/assignments/bootstrap-a2.md",
-      "reviewed_at": null,
-      "evidence": [],
-      "previous_owner": "Copilot"
+      "reviewed_at": "2026-10-18T19:41:43-03:00",
+      "evidence": [
+        "coordination/outbox/20261017-235724-mrq-a2-result.md",
+        "coordination/inbox/20261017-235724-mrq-a2-review.md"
+      ],
+      "previous_owner": "Copilot",
+      "notes": "Acceptance restored from Eiren recorded review after housekeeping reset. Independent suite: A2/C1 94 passed; B2 97 passed including native npm."
     },
     {
       "id": "A3",
@@ -64,10 +68,22 @@
         "A1",
         "A2"
       ],
-      "state": "planned",
-      "assignment": null,
+      "state": "dispatched",
+      "assignment": "coordination/assignments/bootstrap-a3.md",
       "reviewed_at": null,
-      "evidence": []
+      "evidence": [
+        "coordination/outbox/20261018-192140-mrq-a3-result.md",
+        "coordination/inbox/20261018-192140-mrq-a3-review.md",
+        "coordination/inbox/20261018-194744-eiren-a3-review-notes.md"
+      ],
+      "notes": "Changes requested: trailing newline bypasses name validation; correction explicitly dispatched to Mr.Q.",
+      "review_history": [
+        {
+          "at": "2026-10-18T19:47:44-03:00",
+          "decision": "changes_requested",
+          "reason": "Independently reproduced terminal newline accepted by name regex; require full-string match and CLI regression."
+        }
+      ]
     },
     {
       "id": "B1",
@@ -103,11 +119,15 @@
       "dependencies": [
         "A2"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": [],
-      "previous_owner": "Copilot"
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-b2.md",
+      "reviewed_at": "2026-10-18T19:41:43-03:00",
+      "evidence": [
+        "coordination/outbox/20261018-161617-mrq-b2-result.md",
+        "coordination/inbox/20261018-161617-mrq-b2-review.md"
+      ],
+      "previous_owner": "Copilot",
+      "notes": "Acceptance restored from Eiren recorded review after housekeeping reset. Independent suite: A2/C1 94 passed; B2 97 passed including native npm."
     },
     {
       "id": "B3",
@@ -131,11 +151,14 @@
       "dependencies": [
         "V1"
       ],
-      "state": "dispatched",
+      "state": "accepted",
       "assignment": "coordination/assignments/bootstrap-c1.md",
-      "reviewed_at": null,
-      "evidence": [],
-      "notes": "The dashboard is accepted. agy now works on product adapters; dashboard source is no longer owned by this assignment."
+      "reviewed_at": "2026-10-18T19:41:43-03:00",
+      "evidence": [
+        "coordination/outbox/20261017-235515-agy-c1-result.md",
+        "coordination/inbox/20261017-235515-agy-c1-review.md"
+      ],
+      "notes": "Acceptance restored from Eiren recorded review after housekeeping reset. Independent suite: A2/C1 94 passed; B2 97 passed including native npm."
     },
     {
       "id": "C2",
