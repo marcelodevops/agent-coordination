@@ -1,6 +1,6 @@
 # Agent Coordination — Read-Only Local Dashboard
 
-A small, buildless, standard-library local web dashboard for observing the **Agent Bootstrap** multi-agent coordination loop in `/Users/mac/ops/repos/agent-coordination`.
+A small, buildless, standard-library local web dashboard for observing the **Agent Bootstrap** multi-agent coordination loop in this repository.
 
 This dashboard is **strictly read-only**: it never dispatches workers, modifies assignments, creates directories, or marks tasks accepted. Coordinator review and acceptance remain owned by **Eiren** in `coordination/projects/project-bootstrapper/plan.json` and `coordination/STATUS.md`.
 
@@ -8,7 +8,7 @@ This dashboard is **strictly read-only**: it never dispatches workers, modifies 
 
 ## Startup Command
 
-Run from `/Users/mac/ops/repos/agent-coordination` using the Python 3 standard library:
+Run from your checkout root using Python 3.10 or later (standard library only):
 
 ```bash
 python3 -m dashboard
@@ -98,5 +98,11 @@ The server reads coordination files relative to `--root`:
 ## Running Tests
 
 ```bash
-/tmp/projboot-execution-venv/bin/python -m unittest discover -s dashboard/tests -t . -v
+python3 -m unittest discover -s dashboard/tests -t . -v
 ```
+
+## Shared records and local artifacts
+
+Assignments, inbox/outbox evidence and coordinator decisions are versioned. Worker `runs/` and `logs/` are local and ignored; a fresh clone displays the committed plan and evidence but has no execution history until workers run there. The launcher assignments currently refer to the original local workspaces; review their paths before dispatching on another machine.
+
+The optional `flow.html` and `flow.visual-check*` files are generated local diagram previews; `flow.json` is their versioned source. Python caches, Graphify output and private agent overrides are also ignored. Environment example, sample and template files remain shareable.
