@@ -9,3 +9,7 @@ The repository contains assignments, worker results, coordinator decisions, an e
 ## Current Bootstrap coordination dashboard
 
 The implemented read-only dashboard lives in [dashboard/](dashboard/README.md). Start from this repository with `python3 -m dashboard --port 8787` and open http://127.0.0.1:8787/. It polls execution records and coordinator decisions every three seconds; it does not dispatch or accept work autonomously. The Bootstrap source of truth is [plan.json](coordination/projects/project-bootstrapper/plan.json), with review evidence in inbox/outbox and decisions in STATUS.md.
+
+## Contribution workflow
+
+`main` is the default integration branch. Start focused work from current `main` on `feat/<topic>`, `fix/<topic>` or `chore/<topic>`. Keep commits separated by task and repository. Push the topic branch, open a pull request targeting `main`, record relevant checks and review the changes before merging. Preserve individual commits with a merge commit when integrating a multi-commit task. Do not push implementation changes directly to `main`.
