@@ -1,0 +1,299 @@
+{
+  "project": "Agent Bootstrap",
+  "goal": "Crear proyectos listos para desarrollo asistido con agentes",
+  "timezone": "America/Santiago",
+  "created_at": "2026-10-17T23:24:55-03:00",
+  "updated_at": "2026-10-18T19:47:44-03:00",
+  "workspace": "/Users/mac/ops/worktrees/project-bootstrapper-plan",
+  "source_repo": "/Users/mac/ops/repos/project_bootstrapper",
+  "coordination_repo": "/Users/mac/ops/repos/agent-coordination",
+  "plan_path": "/Users/mac/ops/worktrees/project-bootstrapper-plan/docs/superpowers/plans/2026-10-17-bootstrap-product-improvement-plan.md",
+  "coordinator": "Eiren",
+  "tasks": [
+    {
+      "id": "A1",
+      "title": "Colisiones de rutas y conflictos archivo/directorio",
+      "owner": "Mr.Q",
+      "phase": "A",
+      "dependencies": [],
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-a1.md",
+      "reviewed_at": "2026-10-17T23:40:33-03:00",
+      "evidence": [
+        "coordination/outbox/20261017-233410-mrq-a1-result.md",
+        "coordination/inbox/20261017-233410-mrq-a1-review.md",
+        "coordination/inbox/20261017-233500-eiren-a1-review-notes.md",
+        "coordination/outbox/20261017-233903-mrq-a1r2-result.md",
+        "coordination/inbox/20261017-233903-mrq-a1r2-review.md"
+      ],
+      "review_history": [
+        {
+          "at": "2026-10-17T23:36:05-03:00",
+          "decision": "changes_requested",
+          "reason": "Canonical write preflight still allows internal .. and in-root symlink aliases to overwrite; independently reproduced."
+        },
+        {
+          "at": "2026-10-17T23:40:33-03:00",
+          "decision": "accepted",
+          "evidence": "75 passed in 1.09s; both paired messages inspected; resolved-destination corrections reviewed; git diff --check passed."
+        }
+      ],
+      "notes": "Accepted by Eiren after correction round. Independent full-suite run: 75 passed in 1.09s. A3 retains atomic writes, pre-existing filesystem type conflicts and recovery scope.",
+      "source_commit": "af9f127"
+    },
+    {
+      "id": "A2",
+      "title": "Serialización segura de metadatos",
+      "owner": "Mr.Q",
+      "phase": "A",
+      "dependencies": [
+        "B1"
+      ],
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-a2.md",
+      "reviewed_at": "2026-10-18T19:41:43-03:00",
+      "evidence": [
+        "coordination/outbox/20261017-235724-mrq-a2-result.md",
+        "coordination/inbox/20261017-235724-mrq-a2-review.md"
+      ],
+      "previous_owner": "Copilot",
+      "notes": "Acceptance restored from Eiren recorded review after housekeeping reset. Independent suite: A2/C1 94 passed; B2 97 passed including native npm."
+    },
+    {
+      "id": "A3",
+      "title": "Identidad, opciones y preparación atómica",
+      "owner": "Mr.Q",
+      "phase": "A",
+      "dependencies": [
+        "A1",
+        "A2"
+      ],
+      "state": "dispatched",
+      "assignment": "coordination/assignments/bootstrap-a3.md",
+      "reviewed_at": null,
+      "evidence": [
+        "coordination/outbox/20261018-192140-mrq-a3-result.md",
+        "coordination/inbox/20261018-192140-mrq-a3-review.md",
+        "coordination/inbox/20261018-194744-eiren-a3-review-notes.md"
+      ],
+      "notes": "Changes requested: trailing newline bypasses name validation; correction explicitly dispatched to Mr.Q.",
+      "review_history": [
+        {
+          "at": "2026-10-18T19:47:44-03:00",
+          "decision": "changes_requested",
+          "reason": "Independently reproduced terminal newline accepted by name regex; require full-string match and CLI regression."
+        }
+      ]
+    },
+    {
+      "id": "B1",
+      "title": "Chart Helm que pasa lint y render",
+      "owner": "Mr.Q",
+      "phase": "B",
+      "dependencies": [
+        "A1"
+      ],
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-b1-mrq.md",
+      "reviewed_at": "2026-10-17T23:51:47-03:00",
+      "evidence": [
+        "coordination/outbox/20261017-234547-mrq-b1-result.md",
+        "coordination/inbox/20261017-234547-mrq-b1-review.md"
+      ],
+      "notes": "Native Helm rendering/lint and metadata overrides reviewed. Coordinator removed three implementation-mirroring tests, strengthened Service name checks, declared PyYAML dev-only. Independent full suite: 81 passed in 1.63s. Rendering is not deployment verification.",
+      "previous_owner": "Copilot",
+      "review_history": [
+        {
+          "at": "2026-10-17T23:51:47-03:00",
+          "decision": "accepted",
+          "evidence": "Native Helm rendering/lint and metadata overrides reviewed. Coordinator removed three implementation-mirroring tests, strengthened Service name checks, declared PyYAML dev-only. Independent full suite: 81 passed in 1.63s. Rendering is not deployment verification."
+        }
+      ],
+      "source_commit": "69563e4"
+    },
+    {
+      "id": "B2",
+      "title": "Starter TypeScript instalable y ejecutable",
+      "owner": "Mr.Q",
+      "phase": "B",
+      "dependencies": [
+        "A2"
+      ],
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-b2.md",
+      "reviewed_at": "2026-10-18T19:41:43-03:00",
+      "evidence": [
+        "coordination/outbox/20261018-161617-mrq-b2-result.md",
+        "coordination/inbox/20261018-161617-mrq-b2-review.md"
+      ],
+      "previous_owner": "Copilot",
+      "notes": "Acceptance restored from Eiren recorded review after housekeeping reset. Independent suite: A2/C1 94 passed; B2 97 passed including native npm."
+    },
+    {
+      "id": "B3",
+      "title": "Perfil Python de referencia y límites Rails",
+      "owner": "Mr.Q",
+      "phase": "B",
+      "dependencies": [
+        "A3",
+        "B2"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": []
+    },
+    {
+      "id": "C1",
+      "title": "Formatos válidos de adaptadores de agentes",
+      "owner": "agy",
+      "phase": "C",
+      "dependencies": [
+        "V1"
+      ],
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-c1.md",
+      "reviewed_at": "2026-10-18T19:41:43-03:00",
+      "evidence": [
+        "coordination/outbox/20261017-235515-agy-c1-result.md",
+        "coordination/inbox/20261017-235515-agy-c1-review.md"
+      ],
+      "notes": "Acceptance restored from Eiren recorded review after housekeeping reset. Independent suite: A2/C1 94 passed; B2 97 passed including native npm."
+    },
+    {
+      "id": "C2",
+      "title": "Contexto común con comandos reales del perfil",
+      "owner": "agy",
+      "phase": "C",
+      "dependencies": [
+        "B3",
+        "C1"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": []
+    },
+    {
+      "id": "C3",
+      "title": "Skills, memoria e integraciones coherentes",
+      "owner": "Mr.Q",
+      "phase": "C",
+      "dependencies": [
+        "C2"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": []
+    },
+    {
+      "id": "D1",
+      "title": "Plan de generación y vista previa sin efectos",
+      "owner": "Mr.Q",
+      "phase": "D",
+      "dependencies": [
+        "A3",
+        "C3"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": []
+    },
+    {
+      "id": "D2",
+      "title": "Comprobaciones y primeros pasos honestos",
+      "owner": "agy",
+      "phase": "D",
+      "dependencies": [
+        "D1"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": []
+    },
+    {
+      "id": "E1",
+      "title": "Una historia Git y preparación remota recuperable",
+      "owner": "Mr.Q",
+      "phase": "E",
+      "dependencies": [
+        "D2"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": [],
+      "previous_owner": "Copilot"
+    },
+    {
+      "id": "E2",
+      "title": "CI, artefactos instalados y gates de publicación",
+      "owner": "Mr.Q",
+      "phase": "E",
+      "dependencies": [
+        "E1"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": [],
+      "previous_owner": "Copilot"
+    },
+    {
+      "id": "E3",
+      "title": "Revisión integrada y evidencia de la versión",
+      "owner": "Eiren",
+      "phase": "E",
+      "dependencies": [
+        "E2"
+      ],
+      "state": "planned",
+      "assignment": null,
+      "reviewed_at": null,
+      "evidence": []
+    },
+    {
+      "id": "V1",
+      "title": "Dashboard local de seguimiento en agent-coordination",
+      "owner": "agy",
+      "phase": "Visibility",
+      "dependencies": [],
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-v1.md",
+      "reviewed_at": "2026-10-17T23:51:47-03:00",
+      "evidence": [
+        "coordination/outbox/20261017-234625-agy-v1-result.md",
+        "coordination/inbox/20261017-234625-agy-v1-review.md"
+      ],
+      "review_history": [
+        {
+          "at": "2026-10-17T23:38:00-03:00",
+          "decision": "changes_requested",
+          "reason": "Interim inspection: removed actor still active, stale process observations and malformed dependencies need correction; original run interrupted to explicitly dispatch review feedback."
+        },
+        {
+          "at": "2026-10-17T23:51:47-03:00",
+          "decision": "accepted",
+          "evidence": "Read both paired messages, inspected source, independently ran seven fixture tests (3.650s), JS syntax check passed. Browser verified real live data, active team Eiren/Mr.Q/agy, dynamic filters and evidence viewer. No browser console errors. Read-only dashboard accepted; not autonomous dispatch."
+        }
+      ],
+      "notes": "Read both paired messages, inspected source, independently ran seven fixture tests (3.650s), JS syntax check passed. Browser verified real live data, active team Eiren/Mr.Q/agy, dynamic filters and evidence viewer. No browser console errors. Read-only dashboard accepted; not autonomous dispatch.",
+      "source_commit": "365b719"
+    }
+  ],
+  "active_team": [
+    "Eiren",
+    "Mr.Q",
+    "agy"
+  ],
+  "removed_agents": [
+    {
+      "name": "Copilot",
+      "removed_at": "2026-10-17T23:28:54-03:00",
+      "reason": "User explicitly removed Copilot from the plan; historical runs retained."
+    }
+  ]
+}

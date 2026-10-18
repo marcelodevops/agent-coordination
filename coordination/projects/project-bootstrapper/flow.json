@@ -1,0 +1,130 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Agent Bootstrap \u00b7 Execution and review",
+    "locale": "en",
+    "quality_profile": "showcase",
+    "viewBox": [
+      1600,
+      900
+    ]
+  },
+  "lanes": [
+    {
+      "id": "coord",
+      "label": "Eiren \u00b7 coordinator"
+    },
+    {
+      "id": "mrq",
+      "label": "Mr.Q \u00b7 Qoder"
+    },
+    {
+      "id": "agy",
+      "label": "agy"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "plan",
+      "lane": "coord",
+      "col": 0,
+      "type": "database",
+      "label": "Approved plan",
+      "width": 170
+    },
+    {
+      "id": "assign",
+      "lane": "coord",
+      "col": 1,
+      "type": "backend",
+      "label": "Bounded assignments",
+      "width": 170
+    },
+    {
+      "id": "paths",
+      "lane": "mrq",
+      "col": 2,
+      "type": "security",
+      "label": "A1 \u00b7 Output paths",
+      "width": 170
+    },
+    {
+      "id": "agents",
+      "lane": "agy",
+      "col": 2,
+      "type": "backend",
+      "label": "V1 \u00b7 Live dashboard",
+      "width": 170
+    },
+    {
+      "id": "review",
+      "lane": "coord",
+      "col": 3,
+      "type": "security",
+      "label": "Inspect evidence",
+      "width": 170
+    },
+    {
+      "id": "accept",
+      "lane": "coord",
+      "col": 4,
+      "type": "database",
+      "label": "Record acceptance",
+      "width": 170
+    },
+    {
+      "id": "next",
+      "lane": "coord",
+      "col": 5,
+      "type": "backend",
+      "label": "Next ready task",
+      "width": 170
+    }
+  ],
+  "mainPath": [
+    "plan",
+    "assign",
+    "paths",
+    "review",
+    "accept",
+    "next"
+  ],
+  "edges": [
+    {
+      "from": "plan",
+      "to": "assign",
+      "role": "main"
+    },
+    {
+      "from": "assign",
+      "to": "paths",
+      "role": "main"
+    },
+    {
+      "from": "assign",
+      "to": "agents",
+      "role": "branch"
+    },
+    {
+      "from": "paths",
+      "to": "review",
+      "role": "main"
+    },
+    {
+      "from": "agents",
+      "to": "review",
+      "role": "branch"
+    },
+    {
+      "from": "review",
+      "to": "accept",
+      "role": "main"
+    },
+    {
+      "from": "accept",
+      "to": "next",
+      "role": "main"
+    }
+  ]
+}

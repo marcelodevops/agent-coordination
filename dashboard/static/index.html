@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Bootstrap · Read-Only Coordination Dashboard</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <header class="top-header">
+    <div class="header-main">
+      <div class="title-group">
+        <span class="read-only-pill" title="This dashboard is strictly read-only. No mutation or dispatch actions exist.">READ-ONLY MONITOR</span>
+        <h1 id="project-title">Agent Bootstrap · Coordination Dashboard</h1>
+        <p id="project-goal" class="subtitle">Loading project state from coordination/projects/project-bootstrapper/plan.json…</p>
+      </div>
+      <div class="polling-box" aria-live="polite">
+        <div class="connection-row">
+          <span id="conn-badge" class="badge badge-unknown">● STATE UNKNOWN · CONNECTING</span>
+          <span class="poll-interval-note">Polls every 3s</span>
+        </div>
+        <div class="time-meta">
+          <div>Server observed (<span id="tz-label">America/Santiago</span>): <strong id="observed-at">—</strong></div>
+          <div>Last UI refresh: <strong id="last-refresh">Never</strong></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="error-banner" class="alert-banner alert-error" hidden role="alert">
+      <div class="alert-title" id="error-banner-title">State or Connection Error</div>
+      <ul id="error-banner-list" class="alert-list"></ul>
+    </div>
+
+    <div class="meta-strip" id="project-meta-strip">
+      <span>Coordinator: <strong id="meta-coordinator">—</strong></span>
+      <span>Active team: <strong id="meta-active-team">—</strong></span>
+      <span id="meta-removed-wrap" hidden>Removed (history only): <strong id="meta-removed-agents">—</strong></span>
+      <span>Plan updated: <strong id="meta-updated">—</strong></span>
+      <span>Worktree: <code id="meta-workspace">—</code></span>
+      <span>Coordination repo: <code id="meta-coord-repo">—</code></span>
+    </div>
+  </header>
+
+  <main class="main-container">
+    <!-- Summary Counts (No invented percentages) -->
+    <section class="summary-grid" aria-label="Coordination Summary Counts">
+      <article class="summary-card">
+        <div class="summary-label">Coordinator Acceptance</div>
+        <div class="summary-value" id="count-accepted">— / —</div>
+        <div class="summary-note">Accepted / Total roadmap tasks (exact count, no percentage estimate)</div>
+      </article>
+      <article class="summary-card">
+        <div class="summary-label">Dispatched by Coordinator</div>
+        <div class="summary-value" id="count-dispatched">—</div>
+        <div class="summary-note">Authorized assignments awaiting delivery or coordinator review</div>
+      </article>
+      <article class="summary-card">
+        <div class="summary-label">Planned / Waiting</div>
+        <div class="summary-value" id="count-planned">—</div>
+        <div class="summary-note">Unstarted tasks waiting on dependency acceptance &amp; dispatch</div>
+      </article>
+      <article class="summary-card">
+        <div class="summary-label">Worker CLI Processes</div>
+        <div class="summary-value" id="count-processes">—</div>
+        <div class="summary-note">PID observation &amp; exit records runtime only — never equals task acceptance</div>
+      </article>
+    </section>
+
+    <!-- Who is doing what: Active Team -->
+    <section class="panel" aria-labelledby="heading-agents">
+      <div class="panel-header">
+        <h2 id="heading-agents">Who Is Doing What · Active Team</h2>
+        <span class="panel-caption">Derived from active_team in plan.json; separates process observation from coordinator review acceptance</span>
+      </div>
+      <div id="agents-grid" class="agents-grid"></div>
+    </section>
+
+    <!-- Plan Flow A -> B -> C -> D -> E + Visibility -->
+    <section class="panel" aria-labelledby="heading-flow">
+      <div class="panel-header">
+        <h2 id="heading-flow">Roadmap Flow · A → B → C → D → E + Visibility Track</h2>
+        <span class="panel-caption">Dependencies require coordinator acceptance in plan.json/STATUS.md before downstream dispatch</span>
+      </div>
+      <div id="phases-flow" class="phases-flow"></div>
+    </section>
+
+    <!-- Two-column workspace: Tasks Table + Read-Only Detail & Evidence/Log Viewer -->
+    <div class="workspace-split">
+      <section class="panel tasks-panel" aria-labelledby="heading-tasks">
+        <div class="panel-header">
+          <div>
+            <h2 id="heading-tasks">All Roadmap Tasks</h2>
+            <span class="panel-caption">Click any task row to inspect assignment, review history, evidence, and worker process logs</span>
+          </div>
+          <div class="filter-controls" role="group" aria-label="Filter tasks">
+            <label for="filter-owner" class="sr-only">Owner</label>
+            <select id="filter-owner" class="filter-select">
+              <option value="ALL">All Active Owners</option>
+            </select>
+            <label for="filter-phase" class="sr-only">Phase</label>
+            <select id="filter-phase" class="filter-select">
+              <option value="ALL">All Phases</option>
+              <option value="A">Phase A</option>
+              <option value="B">Phase B</option>
+              <option value="C">Phase C</option>
+              <option value="D">Phase D</option>
+              <option value="E">Phase E</option>
+              <option value="Visibility">Visibility</option>
+            </select>
+            <label for="filter-state" class="sr-only">State</label>
+            <select id="filter-state" class="filter-select">
+              <option value="ALL">All States</option>
+              <option value="dispatched">Dispatched</option>
+              <option value="accepted">Accepted</option>
+              <option value="planned">Planned / Waiting</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="table-wrapper">
+          <table class="tasks-table" id="tasks-table">
+            <thead>
+              <tr>
+                <th>Task</th>
+                <th>Phase</th>
+                <th>Owner</th>
+                <th>Dependencies</th>
+                <th>Coordinator Task &amp; Review State</th>
+                <th>Worker Process &amp; Observation</th>
+                <th>Timing (America/Santiago)</th>
+              </tr>
+            </thead>
+            <tbody id="tasks-tbody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel inspector-panel" aria-labelledby="heading-inspector">
+        <div class="panel-header">
+          <div>
+            <h2 id="heading-inspector">Task Detail &amp; Read-Only Evidence / Log Viewer</h2>
+            <span class="panel-caption">Restricted to allowlisted paths: coordination/{assignments,inbox,outbox} &amp; project logs</span>
+          </div>
+        </div>
+
+        <div id="task-detail-box" class="task-detail-box">
+          <p class="muted-note">Select a task to inspect its coordinator state, process runs, assignment, inbox/outbox messages, and logs.</p>
+        </div>
+
+        <div class="file-viewer-section">
+          <div class="file-viewer-header">
+            <h3 id="viewer-file-title">Document / Log Content</h3>
+            <span id="viewer-file-meta" class="viewer-file-meta">No file selected</span>
+          </div>
+          <div class="manual-path-bar">
+            <input
+              type="text"
+              id="manual-path-input"
+              class="path-input"
+              placeholder="coordination/assignments/bootstrap-v1.md"
+              aria-label="Repo-relative allowlisted file path"
+            >
+            <button type="button" id="manual-path-btn" class="view-btn">View Allowlisted File</button>
+          </div>
+          <pre id="file-viewer-content" class="file-viewer-pre">Select an assignment, inbox review request, outbox result, or run log above to view its plain-text content safely.</pre>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <script src="/app.js"></script>
+</body>
+</html>

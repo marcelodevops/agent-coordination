@@ -1,0 +1,16 @@
+diff --git a/bootstrapper/templates.py b/bootstrapper/templates.py
+index 3efb0c1..3be0d5d 100644
+--- a/bootstrapper/templates.py
++++ b/bootstrapper/templates.py
+@@ -99,9 +99,9 @@ TEMPLATES: dict[str, dict] = {
+                 "{{- end }}\n\n"
+                 '{{- define "$name.fullname" -}}\n'
+                 "{{- if .Values.fullnameOverride }}\n"
+-                '{{ .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}\n'
++                '{{- .Values.fullnameOverride | trunc 63 | trimSuffix "-" }}\n'
+                 "{{- else }}\n"
+-                '{{ printf "%s" .Chart.Name | trunc 63 | trimSuffix "-" }}\n'
++                '{{- printf "%s" .Chart.Name | trunc 63 | trimSuffix "-" }}\n'
+                 "{{- end }}\n"
+                 "{{- end }}\n\n"
+                 '{{- define "$name.selectorLabels" -}}\n'

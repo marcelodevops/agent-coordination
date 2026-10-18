@@ -1,0 +1,46 @@
+import re
+import shutil
+import subprocess
+
+import pytest
+
+from bootstrapper.templates import get_template, render
+
+
+def _write_chart(directory):
+    variables = dict(name="demo", description="d", year="2026", holder="acme")
+    for path, body in get_template("helm-chart")["files"].items():
+        target = directory / path
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(render(body, **variables))
+
+
+def _helm(*args):
+    return subprocess.run(
+        ["helm", *map(str, args)], check=True, text=True, capture_output=True
+    ).stdout
+
+
+def _resource_names(manifest):
+    return re.findall(r"^  name: (.+)$", manifest, flags=re.MULTILINE)
+
+
+def test_generated_helm_chart_lints_and_renders_defaults_and_overrides(tmp_path):
+    if shutil.which("helm") is None:
+        pytest.skip("Helm CLI is unavailable; native chart validation was not run")
+
+    chart = tmp_path / "demo"
+    chart.mkdir()
+    _write_chart(chart)
+
+    _helm("lint", chart)
+    default = _helm("template", "demo", chart)
+    assert _resource_names(default) == ["demo", "demo"]
+    assert 'image: "ghcr.io/example/demo:1.0.0"' in default
+
+    overridden = _helm(
+        "template",
+        "demo",
+        chart,
+        "--set",
+        "fullnameOverride=custom-fullname,image.tag=2.3.4",
