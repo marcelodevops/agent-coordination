@@ -1,4 +1,4 @@
-/* Read-only client for the Agent Bootstrap Coordination Dashboard.
+/* Read-only client for AIMonk.
  * Polls /api/state every 3 seconds. Uses textContent exclusively to prevent HTML injection.
  */
 (function () {
@@ -716,7 +716,7 @@
 
       if (data.project) {
         el.projectTitle.textContent =
-          data.project.project + " · Live Coordination Dashboard";
+          "AIMonk · " + data.project.project;
         el.projectGoal.textContent = data.project.goal;
         el.metaCoordinator.textContent = data.project.coordinator;
         el.metaActiveTeam.textContent = (data.project.active_team || []).join(", ") || "—";

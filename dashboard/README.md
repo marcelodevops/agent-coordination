@@ -1,4 +1,4 @@
-# Agent Coordination — Read-Only Local Dashboard
+# AIMonk — Read-Only Local Dashboard
 
 A small, buildless, standard-library local web dashboard for observing the **Agent Bootstrap** multi-agent coordination loop in this repository.
 

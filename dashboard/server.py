@@ -1143,7 +1143,7 @@ def main(argv: list[str] | None = None) -> int:
     server = create_server(host=args.host, port=args.port, repo_root=args.root)
     actual_host, actual_port = server.server_address[:2]
     print(
-        f"Agent Coordination read-only dashboard listening on http://{actual_host}:{actual_port} "
+        f"AIMonk read-only dashboard listening on http://{actual_host}:{actual_port} "
         f"(root: {server.repo_root})",
         flush=True,
     )
