@@ -12,9 +12,9 @@ The current implementation combines a file-based handoff method, an explicit wor
 
 ## See the work
 
-![AIMonk dashboard showing accepted tasks, active agent ownership and roadmap dependencies](resources/Screenshot%202026-10-19%20at%204.56.57%E2%80%AFPM.png)
+![Dupond dashboard showing accepted tasks, active agent ownership and roadmap dependencies](resources/Screenshot%202026-10-19%20at%204.56.57%E2%80%AFPM.png)
 
-*Team ownership and the dependency flow at a glance. These are historical screenshots from the agent-bootstrap project, captured before the AIMonk rename; counts, paths and assignments reflect that session.*
+*Team ownership and the dependency flow at a glance. These are historical screenshots from the agent-bootstrap project, captured before the Dupond rename; counts, paths and assignments reflect that session.*
 
 ![Task table and detail panel separating coordinator acceptance from worker process completion](resources/Screenshot%202026-10-19%20at%204.45.39%E2%80%AFPM.png)
 
@@ -29,8 +29,8 @@ The current implementation combines a file-based handoff method, an explicit wor
 You need **Python 3.10 or later**, Git and a browser. The dashboard uses the Python standard library: no package installation, frontend build or API key is needed to view it.
 
 ```sh
-git clone https://github.com/marcelodevops/aimonk.git
-cd aimonk
+git clone https://github.com/marcelodevops/dupond.git
+cd dupond
 python3 -m dashboard --port 8787
 ```
 
