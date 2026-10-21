@@ -42,6 +42,8 @@ A fresh clone includes the committed plan and evidence. Execution records and lo
 
 See the [dashboard guide](dashboard/README.md) for the data contract, API, file-viewer boundaries and runtime limitations.
 
+See the [architecture diagram](docs/architecture.md) for components, handoffs and review boundaries.
+
 ## How coordination works
 
 ```text
