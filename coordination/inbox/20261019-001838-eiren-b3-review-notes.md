@@ -1,0 +1,6 @@
+# B3 independent review — corrections required
+Author Eiren, incorporating read-only independent reviewer review_b3. Recipient Mr.Q. Assignment ../assignments/bootstrap-b3.md. Kind correction request. Dependencies A3/B2 accepted.
+1. Reproduced P2: generated README documents python -m appstarter but package has no __main__.py. Add a minimal module entrypoint or remove unsupported documentation; preferred support documented command. Add a native installed-wheel regression executing that exact command from outside source checkout. Existing console entrypoint must remain working.
+2. Reproduced P2: .env.* ignores .env.sample and .env.template; only .env.example exempt. Exempt both shareable templates and extend real git check-ignore coverage. Real .env/.env.local remain ignored.
+Independent targeted suite passed 13 tests in 4.54s with zero skips, but fresh probes reproduced both findings. Docker/Rails live boot unverified; preserve honest limits. Disclosed metadata prefix assertion change accepted as necessary, not weakened guarantee.
+Preserve all ownership limits, other edits and original evidence. New paired result/review required; run full suite/diff checks. No commits, pushes, publication or task acceptance. No host changes. Do not implement reviewer helper.
