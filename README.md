@@ -1,10 +1,14 @@
-# AIMonk
+<p align="center">
+  <img src="resources/dupond-logo.png" alt="Dupond — detective with a bowler hat and moustache" width="180">
+</p>
+
+# Dupond
 
 **Coordinate AI agents. Follow the work. Review the evidence.**
 
-AIMonk is a shared workspace and local dashboard for coordinating agent work. Keep assignments, dependencies, worker deliveries and review decisions together so you can see who is doing what without carrying prompts between agents.
+Dupond is a shared workspace and local dashboard for coordinating agent work. Keep assignments, dependencies, worker deliveries and review decisions together so you can see who is doing what without carrying prompts between agents.
 
-The current implementation combines a file-based handoff method, an explicit worker launcher and a read-only browser dashboard. This repository's working example coordinates [agent-bootstrap](https://github.com/marcelodevops/agent-bootstrap); AIMonk is the coordination workspace, while agent-bootstrap creates starter projects.
+The current implementation combines a file-based handoff method, an explicit worker launcher and a read-only browser dashboard. This repository's working example coordinates [agent-bootstrap](https://github.com/marcelodevops/agent-bootstrap); Dupond is the coordination workspace, while agent-bootstrap creates starter projects.
 
 ## See the work
 
@@ -37,6 +41,8 @@ The browser polls the local API **every three seconds**. Updates come from files
 A fresh clone includes the committed plan and evidence. Execution records and logs stay local, so historical runtime data shown in these screenshots will not appear in a new clone. The bundled launcher is specific to the current project and local CLI paths; review its workspace, assignments and agent configuration before dispatching on another machine. Viewing the dashboard does not start any workers.
 
 See the [dashboard guide](dashboard/README.md) for the data contract, API, file-viewer boundaries and runtime limitations.
+
+See the [architecture diagram](docs/architecture.md) for components, handoffs and review boundaries.
 
 ## How coordination works
 
