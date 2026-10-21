@@ -126,15 +126,20 @@ class ReviewTests(unittest.TestCase):
         self.assertFalse(self.decision()['eligible'])
 
     def test_explicit_apply_records_acceptance_and_preserves_other_tasks(self):
-        plan = self.root.parent / 'plan.json'
+        coordinator = self.root.parent / 'coordinator'
+        coordinator.mkdir()
+        subprocess.run(['git', 'init', '-q', str(coordinator)], check=True)
+        plan = coordinator / 'plan.json'
         plan.write_text(json.dumps({'tasks': [{'id': 'T1', 'owner': 'worker', 'state': 'dispatched', 'dependencies': []}, {'id': 'T2', 'state': 'planned'}]}))
-        receipt = self.root.parent / 'decision.json'
+        receipt = coordinator / 'decision.json'
         apply_decision(self.root, self.packet, self.report, self.policy, self.verification, plan, 'T1', receipt)
         result = json.loads(plan.read_text())
         self.assertEqual(result['tasks'][0]['state'], 'accepted')
         self.assertEqual(result['tasks'][1]['state'], 'planned')
         self.assertEqual(len(result['tasks'][0]['review_history']), 1)
+        self.assertEqual(result['tasks'][0]['evidence'], ['decision.json'])
         self.assertTrue(receipt.exists())
+        self.assertFalse((coordinator / 'plan.json.review.lock').exists())
 
     def test_apply_requires_exact_task(self):
         with self.assertRaises(ValueError):

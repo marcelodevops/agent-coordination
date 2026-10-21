@@ -96,8 +96,10 @@ To authorize acceptance for precisely that task, add:
 --receipt /path/to/coordination/new-DOC1-decision.json
 ```
 
-The helper creates a new receipt, appends review history/evidence and atomically
-replaces the plan; it never changes STATUS.md or assignments. A lock protects
+The plan and receipt must be in the same coordinator Git repository, outside the
+reviewed repository. The helper records the receipt with a repository-relative
+path, appends review history/evidence and atomically replaces the plan; it never
+changes STATUS.md or assignments. A lock protects
 against another invocation of this helper. Other plan writers must honor the
 sibling `plan.json.review.lock`; do not update a plan concurrently. It also checks
 plan bytes before replacement. Receipt is created first with `prepared` status,

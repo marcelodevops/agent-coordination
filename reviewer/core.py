@@ -190,6 +190,16 @@ def apply_decision(root, packet, report, policy, verification, plan_path, author
     reviewed_root = Path(root).resolve()
     if any(path.resolve().is_relative_to(reviewed_root) for path in (plan_path, receipt_path)):
         raise ValueError('Plan and receipt must live outside reviewed repository')
+    try:
+        coordinator_root = Path(subprocess.run(
+            ['git', '-C', str(plan_path.parent.resolve()), 'rev-parse', '--show-toplevel'],
+            check=True, capture_output=True, text=True,
+        ).stdout.strip()).resolve()
+        receipt_ref = receipt_path.resolve().relative_to(coordinator_root).as_posix()
+    except subprocess.CalledProcessError as error:
+        raise ValueError('Plan must live in a Git repository') from error
+    except ValueError as error:
+        raise ValueError("Receipt must live inside the plan's Git repository") from error
     if plan_path.is_symlink() or receipt_path.exists() or receipt_path.is_symlink():
         raise ValueError('Plan must not be symlink; receipt must be new')
     # Exclusive sibling lock coordinates this helper; other plan writers must respect it.
@@ -224,7 +234,10 @@ def apply_decision(root, packet, report, policy, verification, plan_path, author
             if plan_path.read_bytes() != original:
                 raise ValueError('Plan changed concurrently; acceptance aborted')
             task['state'], task['reviewed_at'] = 'accepted', now
-            task.setdefault('evidence', []).append(str(receipt_path.resolve()))
+            evidence = task.setdefault('evidence', [])
+            if not isinstance(evidence, list):
+                raise ValueError('Task evidence must be a list')
+            evidence.append(receipt_ref)
             task.setdefault('review_history', []).append(receipt)
             plan['updated_at'] = now
             atomic_json(plan_path, plan)
