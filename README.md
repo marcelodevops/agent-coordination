@@ -53,6 +53,8 @@ Bounded assignment → explicit dispatch → worker delivery → review
 
 The dashboard exposes active owners, phase dependencies, task filters, execution start/end times, measured durations, review history and an allowlisted evidence/log viewer. It is read-only: it does not dispatch, edit tasks, accept deliveries or run an unattended coordinator loop.
 
+An optional [reviewer helper](reviewer/README.md) prepares source-bound review packets and can record an explicitly authorized simple-task acceptance after distinct reviewer and verifier evidence. It defaults to evaluation without writes; it does not authenticate agents or enforce filesystem isolation.
+
 Start with [STARTING-POINT.md](STARTING-POINT.md), [coordination/RULES.md](coordination/RULES.md) and [coordination/STATUS.md](coordination/STATUS.md). The status file preserves dated decisions; its introductory sections also contain historical setup notes.
 
 ## Where things live
@@ -66,6 +68,7 @@ Start with [STARTING-POINT.md](STARTING-POINT.md), [coordination/RULES.md](coord
 | [Project plan](coordination/projects/project-bootstrapper/plan.json) | Dashboard task ownership, dependencies and acceptance state |
 | [Worker launcher](coordination/projects/project-bootstrapper/run_worker.py) | Explicit CLI dispatch and local execution recording |
 | [dashboard/](dashboard/README.md) | Standard-library server and browser interface |
+| [reviewer/](reviewer/README.md) | Optional review-packet and narrowly authorized acceptance helper |
 
 The project folder retains its original `project-bootstrapper` name to preserve existing references. Runtime `runs/`, `logs/`, caches and generated previews are ignored by Git; assignment and evidence files are versioned.
 
