@@ -1,4 +1,4 @@
-/* Read-only client for AIMonk.
+/* Read-only client for Dupond.
  * Polls /api/state every 3 seconds. Uses textContent exclusively to prevent HTML injection.
  */
 (function () {
@@ -716,7 +716,7 @@
 
       if (data.project) {
         el.projectTitle.textContent =
-          "AIMonk · " + data.project.project;
+          "Dupond · " + data.project.project;
         el.projectGoal.textContent = data.project.goal;
         el.metaCoordinator.textContent = data.project.coordinator;
         el.metaActiveTeam.textContent = (data.project.active_team || []).join(", ") || "—";
