@@ -3,7 +3,7 @@
   "goal": "Crear proyectos listos para desarrollo asistido con agentes",
   "timezone": "America/Santiago",
   "created_at": "2026-10-17T23:24:55-03:00",
-  "updated_at": "2026-10-18T19:47:44-03:00",
+  "updated_at": "2026-10-20T05:10:21-03:00",
   "workspace": "/Users/mac/ops/worktrees/project-bootstrapper-plan",
   "source_repo": "/Users/mac/ops/repos/project_bootstrapper",
   "coordination_repo": "/Users/mac/ops/repos/agent-coordination",
@@ -68,22 +68,30 @@
         "A1",
         "A2"
       ],
-      "state": "dispatched",
+      "state": "accepted",
       "assignment": "coordination/assignments/bootstrap-a3.md",
-      "reviewed_at": null,
+      "reviewed_at": "2026-10-18T21:39:19-03:00",
       "evidence": [
         "coordination/outbox/20261018-192140-mrq-a3-result.md",
         "coordination/inbox/20261018-192140-mrq-a3-review.md",
-        "coordination/inbox/20261018-194744-eiren-a3-review-notes.md"
+        "coordination/inbox/20261018-194744-eiren-a3-review-notes.md",
+        "coordination/outbox/20261018-194950-mrq-a3r2-result.md",
+        "coordination/inbox/20261018-194950-mrq-a3r2-review.md"
       ],
-      "notes": "Changes requested: trailing newline bypasses name validation; correction explicitly dispatched to Mr.Q.",
+      "notes": "Correction reviewed; complete-string validation and CLI no-write/no-hook/no-remote regressions inspected. Independent full suite 132 passed in 4.86s. Atomic new-target staging; existing forced merges are not transactional.",
       "review_history": [
         {
           "at": "2026-10-18T19:47:44-03:00",
           "decision": "changes_requested",
           "reason": "Independently reproduced terminal newline accepted by name regex; require full-string match and CLI regression."
+        },
+        {
+          "at": "2026-10-18T21:39:19-03:00",
+          "decision": "accepted",
+          "evidence": "132 passed in 4.86s; actual code and paired correction reviewed."
         }
-      ]
+      ],
+      "source_commit": "39f3dd2"
     },
     {
       "id": "B1",
@@ -138,10 +146,27 @@
         "A3",
         "B2"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": []
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-b3.md",
+      "reviewed_at": "2026-10-19T15:52:23-03:00",
+      "evidence": [
+        "coordination/inbox/20261019-001838-eiren-b3-review-notes.md",
+        "coordination/outbox/20261019-002816-mrq-b3r2-result.md",
+        "coordination/inbox/20261019-002816-mrq-b3r2-review.md"
+      ],
+      "notes": "Independent review findings corrected; coordinator inspected paired correction and native installed-wheel module-entrypoint/env-ignore regressions. Independent suite 150 passed in 10.79s. Docker/Rails boot remain unverified.",
+      "review_history": [
+        {
+          "at": "2026-10-19T00:18:38.130338-03:00",
+          "decision": "changes_requested",
+          "reason": "Independent fresh probes reproduced missing python -m entrypoint and ignored .env.sample/.env.template."
+        },
+        {
+          "at": "2026-10-19T15:52:23-03:00",
+          "decision": "accepted",
+          "evidence": "150 passed in 10.79s; corrected reviewer findings verified."
+        }
+      ]
     },
     {
       "id": "C1",
@@ -169,23 +194,60 @@
         "B3",
         "C1"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": []
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-c2.md",
+      "reviewed_at": "2026-10-19T23:37:20-03:00",
+      "evidence": [
+        "coordination/inbox/20261019-233027-eiren-c2-review-notes.md",
+        "coordination/outbox/20261019-233520-agy-c2r2-result.md",
+        "coordination/inbox/20261019-233520-agy-c2r2-review.md"
+      ],
+      "notes": "Scheduled pilot reviewed correction; independent full suite 163 passed in 9.79s. Ruby commands inspected; invalid second-file regression exercises generated commands. Static syntax is not Rails boot verification.",
+      "review_history": [
+        {
+          "at": "2026-10-19T23:30:27.873844-03:00",
+          "decision": "changes_requested",
+          "reason": "Ruby -c invocation checks only first file; invalid second file went undetected."
+        },
+        {
+          "at": "2026-10-19T23:37:20-03:00",
+          "decision": "accepted",
+          "evidence": "Independent python -m pytest -q:163 passed in 9.79s; git diff --check clean; tested changes committed as 48095385587fbee89ddb4b82e935635a6c6e4a67."
+        }
+      ],
+      "source_commit": "48095385587fbee89ddb4b82e935635a6c6e4a67"
     },
     {
       "id": "C3",
       "title": "Skills, memoria e integraciones coherentes",
-      "owner": "Mr.Q",
+      "owner": "agy",
       "phase": "C",
       "dependencies": [
         "C2"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": []
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-c3.md",
+      "reviewed_at": "2026-10-20T02:50:38-03:00",
+      "evidence": [
+        "coordination/inbox/20261020-024215-eiren-c3-review-notes.md",
+        "coordination/outbox/20261020-024800-agy-c3r2-result.md",
+        "coordination/inbox/20261020-024800-agy-c3r2-review.md"
+      ],
+      "previous_owner": "Mr.Q",
+      "notes": "Accepted after coordinator independently reviewed corrected symlink containment and executable discovery, then ran full suite: 172 passed in 10.35s; git diff --check clean. No live Graphify/client verification.",
+      "review_history": [
+        {
+          "at": "2026-10-20T02:42:15.476097-03:00",
+          "decision": "changes_requested",
+          "reason": "Synthetic symlink copied outside .env; nonexecutable fallback PermissionError. Independent170 tests passed, gaps reproduced separately."
+        },
+        {
+          "at": "2026-10-20T02:50:38-03:00",
+          "decision": "accepted",
+          "evidence": "Coordinator independently reviewed C3 correction diff and paired evidence; /tmp/projboot-execution-venv/bin/python -m pytest -q -c pyproject.toml tests: 172 passed in 10.35s; git diff --check clean; commit 6a9e5249646a2becfdc1290728f81fd3ae8549ea. Live Graphify/client behavior remains unverified."
+        }
+      ],
+      "source_commit": "6a9e5249646a2becfdc1290728f81fd3ae8549ea"
     },
     {
       "id": "D1",
@@ -196,10 +258,24 @@
         "A3",
         "C3"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": []
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-d1.md",
+      "reviewed_at": "2026-10-20T03:37:25-03:00",
+      "evidence": [
+        "coordination/outbox/20261020-030854-mrq-d1-result.md",
+        "coordination/inbox/20261020-030854-mrq-d1-review.md",
+        "coordination/inbox/20261020-031523-eiren-d1-review-notes.md",
+        "coordination/inbox/20261020-033725-eiren-d1-acceptance.md"
+      ],
+      "notes": "Accepted by coordinator takeover after correction-worker handoffs were missing; see acceptance evidence. Independent review and 21 focused + 193 full tests pass. Missing worker report is explicitly recorded; preview has no live GitHub/Graphify/client verification.",
+      "source_commit": "d43efee11d6c4ce9dce0e815d583690dcac32c3d",
+      "review_history": [
+        {
+          "at": "2026-10-20T03:37:25-03:00",
+          "decision": "accepted",
+          "reason": "Coordinator completed the bounded correction after three worker launches disappeared without paired handoff. Independent review confirmed the snapshot race fix; deterministic race/forced-merge tests inspected; focused 21 passed, full suite 193 passed in 10.50s, diff check clean. Missing Mr.Q correction report remains explicit in coordinator acceptance evidence."
+        }
+      ]
     },
     {
       "id": "D2",
@@ -209,10 +285,28 @@
       "dependencies": [
         "D1"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": []
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-d2.md",
+      "reviewed_at": "2026-10-20T04:01:45-03:00",
+      "evidence": [
+        "coordination/outbox/20261020-035955-agy-d2-result-r2.md",
+        "coordination/inbox/20261020-035955-agy-d2-review-r2.md",
+        "coordination/inbox/20261020-040145-eiren-d2-acceptance.md"
+      ],
+      "notes": "Accepted after independent inspection of the Graphify/custom outputs-dir regression; coordinator focused 14 passed, full suite 207 passed in 12.85s, diff check clean. Offline tests do not verify external Graphify, assistant clients, GitHub, or Kubernetes. PR Helm chart-name constraint finding remains open before merge.",
+      "review_history": [
+        {
+          "at": "2026-10-20T03:53:29-03:00",
+          "decision": "changes_requested",
+          "reason": "Independent review found that outputs_dir=graphify-out with --no-graphify is misreported as a Graphify placeholder and still suggests graphify update/pending graph. Required regression and status fix; no other blocker found."
+        },
+        {
+          "at": "2026-10-20T04:01:45-03:00",
+          "decision": "accepted",
+          "reason": "Inspected paired correction and real-composition regression; independent focused 14 passed in 1.07s, full suite 207 passed in 12.85s, diff check clean. Exact verified source committed as 410e8cb69983261ddf61bebac96e2006d755609f."
+        }
+      ],
+      "source_commit": "410e8cb69983261ddf61bebac96e2006d755609f"
     },
     {
       "id": "E1",
@@ -222,25 +316,59 @@
       "dependencies": [
         "D2"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": [],
-      "previous_owner": "Copilot"
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-e1.md",
+      "reviewed_at": "2026-10-20T04:56:16-03:00",
+      "evidence": [
+        "coordination/outbox/20261020-045616-eiren-e1r-result.md",
+        "coordination/inbox/20261020-045616-eiren-e1r-review.md"
+      ],
+      "previous_owner": "Copilot",
+      "notes": "Correction accepted and fast-forward pushed to the existing PR branch as commit cf6410387f2c4dcce550a2e25589aeab6d01299d; same tree as independently reviewed/tested isolated commit 330cd0e7bb991ae733d86367610e37cddd03b57a. Integration suite: 218 passed; diff check clean. PR #7 remains open/dirty against main with no reviews or checks. Live GitHub remote operations/settings remain unverified.",
+      "review_history": [
+        {
+          "at": "2026-10-20T04:46:33-03:00",
+          "decision": "accepted",
+          "reason": "Coordinator takeover after Mr.Q run 20261020-043539-e1 disappeared without paired evidence. Accepted shared-history push, exact planned-file staging with an isolated index seeded from HEAD, preservation of existing tracked files and unrelated staged changes, and honest nonzero partial-failure reporting. Independent read-only review found no remaining issue. Full suite: 217 passed in 15.93s; git diff --check clean. Commit 837fae576bd5cdcb066df9f83d145bf376be15d4 on top of D1R commit f9162a42c58b18313ce11dd0e779d08e8edac6a0."
+        },
+        {
+          "at": "2026-10-20T04:50:41-03:00",
+          "decision": "reopened",
+          "reason": "Independent follow-up review found approved E1 scope did not cover legacy init/create remote paths; `--force --no-git` status could overclaim empty/new remote. E2 changes are disjoint and may continue, but are not eligible for acceptance until E1 correction passes review."
+        },
+        {
+          "at": "2026-10-20T04:56:16-03:00",
+          "decision": "accepted",
+          "reason": "Independent follow-up review resolved findings on legacy init, default create, no-git remote API mutation, force-reuse wording, default push-failure status, and intentional no-git pending status. Focused 57 passed; full 218 passed; diff check clean. Exact isolated correction commit 330cd0e7bb991ae733d86367610e37cddd03b57a; awaiting integration into shared PR branch."
+        }
+      ],
+      "source_commit": "cf6410387f2c4dcce550a2e25589aeab6d01299d"
     },
     {
       "id": "E2",
       "title": "CI, artefactos instalados y gates de publicación",
-      "owner": "Mr.Q",
+      "owner": "agy",
       "phase": "E",
       "dependencies": [
         "E1"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": [],
-      "previous_owner": "Copilot"
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-e2.md",
+      "reviewed_at": "2026-10-20T04:59:33-03:00",
+      "evidence": [
+        "coordination/outbox/20261020-045933-eiren-e2-result.md",
+        "coordination/inbox/20261020-045933-eiren-e2-review.md"
+      ],
+      "previous_owner": "Mr.Q",
+      "notes": "Coordinator takeover accepted in-scope workflow commit e8b14fdd41806c8bcc02e0fbd0c64dcab3cb96e1 after independent review; E2 worker report remains missing (042745 out-of-scope stopped, 044932 failed, direct PID 12969 ended without handoff). actionlint/YAML/full 218 tests/local build+twine/installed-wheel smoke passed. PR #7 has no hosted checks or reviews and is DIRTY against main; OIDC/live publishing remain unverified.",
+      "source_commit": "e8b14fdd41806c8bcc02e0fbd0c64dcab3cb96e1",
+      "review_history": [
+        {
+          "at": "2026-10-20T04:59:33-03:00",
+          "decision": "accepted",
+          "reason": "Exact three-file workflow diff independently reviewed with no concrete issue; actionlint, YAML parse, full 218-test suite, local wheel/sdist build, twine check and installed-wheel CLI/generated Python tests passed. Accepted source only; hosted CI/OIDC/publication remain unverified. E2 worker report missing."
+        }
+      ]
     },
     {
       "id": "E3",
@@ -250,10 +378,50 @@
       "dependencies": [
         "E2"
       ],
-      "state": "planned",
-      "assignment": null,
-      "reviewed_at": null,
-      "evidence": []
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-e3.md",
+      "reviewed_at": "2026-10-20T22:59:31-03:00",
+      "evidence": [
+        "coordination/outbox/20261020-050241-eiren-e3-integration.md",
+        "coordination/inbox/20261020-050241-eiren-e3-disposition.md",
+        "coordination/outbox/20261020-051021-eiren-testpypi-result.md",
+        "coordination/inbox/20261020-051021-eiren-testpypi-disposition.md",
+        "coordination/outbox/20261020-225138-eiren-mainline-review-fix-result.md",
+        "coordination/inbox/20261020-225138-eiren-mainline-review-fix-disposition.md",
+        "coordination/outbox/20261020-225614-eiren-testpypi-rc2-result.md",
+        "coordination/inbox/20261020-225614-eiren-testpypi-rc2-disposition.md",
+        "coordination/outbox/20261020-225931-eiren-stable-prepared.md",
+        "coordination/inbox/20261020-225931-eiren-stable-disposition.md"
+      ],
+      "notes": "Current corrected mainline accepted for candidate preparation at f28735990b9a8ce78ee949f05f7e44ac9bee80ff. PR #11 merge 90c3e97 passed hosted verify and was independently reviewed; findings (63-character Helm chart name bound and --from-tree exact collision rejection) were fixed in PR #12, independently reviewed, and merged after hosted verify 39529613604 passed. Full suite on patch: 215 passed in 13.78s; final focused regressions 2 passed; diff check clean. User confirmed TestPyPI Trusted Publisher configured; OIDC setup is not verified until next publish. Exact 0.1.1rc2 is absent on TestPyPI; prepare version-only candidate PR from latest main, then TestPyPI build/publish/install checks. No candidate/stable release published. TestPyPI RC2 `0.1.1rc2` verified: version-only PR #13 head 7a522ab39edbb20a3e488a089d7264808cd7de05 independently reviewed, merged in cc9477fc27782b1a2be0d995418e8f92c02a9ee7 after hosted verify. Workflow 39529950814 build and OIDC publish succeeded. Exact TestPyPI artifacts downloaded and SHA-256 matched API; disposable exact-wheel install with dependencies from production PyPI, both CLI help commands, generated Python scaffold, and generated tests (2 passed) verified. Stable publication remains gated on version-only stable PR, artifact parity, and PyPI publisher configuration. See 20261020-225614 paired evidence. Stable 0.1.1 version-only PR #14 independently reviewed, hosted verify 39530345572 passed, merged at 19e04963bf52c597672f2ee1b4e27febc86a78aa. Full local suite (215 passed), build/twine, installed-wheel CLI/generator smoke (2 generated tests), and artifact content parity against exact TestPyPI RC2 after version normalization passed. Production PyPI only has 0.1.0; production Trusted Publisher not confirmed. Release tag is gated on PyPI project publisher matching owner marcelodevops, repository agent-bootstrap, workflow release.yml, environment pypi. Evidence 20261020-225931 pair.",
+      "review_history": [
+        {
+          "at": "2026-10-20T05:02:41-03:00",
+          "decision": "integrated_review_accepted_pending_hosted_gates",
+          "evidence": "c69e531aa7a5af132745065f6cd1dea459696074 independently reviewed; full 218 tests, workflow lint/YAML, build/twine and installed-wheel Python smoke passed. PR verify pending; no GitHub review."
+        },
+        {
+          "at": "2026-10-20T05:10:20-03:00",
+          "decision": "candidate_build_passed_testpypi_publish_blocked",
+          "evidence": "Workflow run 39391239668 at exact main SHA 93fa7c50a38bfe7faadf8778ecd98831b4b28d4f passed build/test/twine/installed-wheel/project checks and artifact upload. OIDC publish failed invalid-publisher; exact TestPyPI endpoint returned 404. Trusted Publisher configuration is required before retry."
+        },
+        {
+          "at": "2026-10-20T22:51:38-03:00",
+          "decision": "corrected_latest_main_accepted_for_candidate_preparation",
+          "evidence": "PR #11 at 90c3e97 passed hosted verify and independent review identified two concrete issues. PR #12 fixed both, exact patch review was clean, 215 source tests and 2 final focused regressions passed, diff check clean, hosted verify run 39529613604 passed; merged as f28735990b9a8ce78ee949f05f7e44ac9bee80ff."
+        },
+        {
+          "at": "2026-10-20T22:56:14-03:00",
+          "decision": "testpypi_candidate_published_and_exact_artifact_install_verified",
+          "evidence": "Run 39529950814 build/publish passed for exact reviewed SHA 7a522ab39edbb20a3e488a089d7264808cd7de05. TestPyPI endpoint 0.1.1rc2 returned 200; downloaded wheel/sdist hashes matched index. Disposable wheel install, exact version, both CLI entrypoints, generated project and 2 tests passed."
+        },
+        {
+          "at": "2026-10-20T22:59:31-03:00",
+          "decision": "stable_source_accepted_production_publisher_configuration_required",
+          "evidence": "PR #14 merge 19e04963bf52c597672f2ee1b4e27febc86a78aa; verify 39530345572 passed, independent review clean. Stable artifact contents match verified RC2 after version normalization; local 215-test suite, build/twine/installed-wheel checks passed. Production release tag withheld pending trusted publisher for environment pypi."
+        }
+      ],
+      "source_commit": "19e04963bf52c597672f2ee1b4e27febc86a78aa"
     },
     {
       "id": "V1",
@@ -282,6 +450,32 @@
       ],
       "notes": "Read both paired messages, inspected source, independently ran seven fixture tests (3.650s), JS syntax check passed. Browser verified real live data, active team Eiren/Mr.Q/agy, dynamic filters and evidence viewer. No browser console errors. Read-only dashboard accepted; not autonomous dispatch.",
       "source_commit": "365b719"
+    },
+    {
+      "id": "D1R",
+      "title": "Corrección de identidad Chart.yaml Helm",
+      "owner": "Mr.Q",
+      "phase": "D",
+      "dependencies": [
+        "A3",
+        "C3"
+      ],
+      "state": "accepted",
+      "assignment": "coordination/assignments/bootstrap-d1r.md",
+      "reviewed_at": "2026-10-20T04:17:58-03:00",
+      "evidence": [
+        "coordination/STATUS.md#2026-10-20T03:40:59-03:00",
+        "coordination/outbox/20261020-041724-eiren-d1r-result.md",
+        "coordination/inbox/20261020-041724-eiren-d1r-review.md"
+      ],
+      "review_history": [
+        {
+          "at": "2026-10-20T04:17:58-03:00",
+          "decision": "accepted_locally",
+          "reason": "Coordinator takeover after the recorded worker process disappeared without paired handoff. Independent read-only review found no issue; focused 29 passed, full suite 214 passed, native Helm lint passed for My_App/café/my.chart, and diff check passed. Verified on base 410e8cb69983261ddf61bebac96e2006d755609f plus working-tree diff SHA-256 8d671652a842e15145fbca9d6c7f78104bd92039fdb738944a96b2b5f74f1195. Assignment forbids commit/push; PR integration and release gates remain pending."
+        }
+      ],
+      "notes": "Accepted locally by coordinator takeover after independently reviewing the bounded slug correction and paired coordinator evidence. Original project directory and non-Helm identity remain unchanged. Exact base revision and diff fingerprint, focused/full test output, native Helm results, independent reviewer disposition, and missing worker report are recorded in the paired evidence. No commit/push; PR remains gated on conflict integration and required CI/review/release steps."
     }
   ],
   "active_team": [
@@ -295,5 +489,6 @@
       "removed_at": "2026-10-17T23:28:54-03:00",
       "reason": "User explicitly removed Copilot from the plan; historical runs retained."
     }
-  ]
+  ],
+  "execution_paused": true
 }

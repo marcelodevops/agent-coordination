@@ -18,11 +18,11 @@ All owners below are planned responsibilities. Only rows with a linked assignmen
 | B3 | Mr.Q | Perfil Python de referencia y límites Rails | A3, B2 |
 | C1 | agy | Formatos válidos de adaptadores de agentes | V1 |
 | C2 | agy | Contexto común con comandos reales del perfil | B3, C1 |
-| C3 | Mr.Q | Skills, memoria e integraciones coherentes | C2 |
+| C3 | agy | Skills, memoria e integraciones coherentes | C2 |
 | D1 | Mr.Q | Plan de generación y vista previa sin efectos | A3, C3 |
 | D2 | agy | Comprobaciones y primeros pasos honestos | D1 |
 | E1 | Mr.Q | Una historia Git y preparación remota recuperable | D2 |
-| E2 | Mr.Q | CI, artefactos instalados y gates de publicación | E1 |
+| E2 | agy | CI, artefactos instalados y gates de publicación | E1 |
 | E3 | Eiren | Revisión integrada y evidencia de la versión | E2 |
 | V1 | agy | Dashboard local de seguimiento en agent-coordination | Ready |
 
