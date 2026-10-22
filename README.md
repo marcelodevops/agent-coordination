@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="resources/dupond-logo.png" alt="Dupond — detective with a bowler hat and moustache" width="180">
+  <img src="resources/dupond-banner.png" alt="Dupond — detective with a bowler hat and moustache" width="900">
 </p>
 
 # Dupond
